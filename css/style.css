@@ -1,0 +1,30 @@
+body{padding:10px;font-size:75%}
+a{color:fireBrick;text-decoration:none;font-weight:bold}
+h1,h2,h3,h4{margin:0;padding:3px}
+h1,h2{margin-bottom:5px;text-align:center}
+h1{color:fireBrick}
+h2{font-size:1.1em}
+h3{font-size:1.4em;color:fireBrick;border:1px solid #FC0;background-color:#FFFC7F;}
+label{display:block}
+ul{margin:5px 0 5px 20px;padding:0;list-style-type:none}
+ul li{margin-left:5px}
+table{width:50%}
+/* DOCUMENTATION */
+.documentation{padding:5px 0 5px 20px}
+.documentation label{padding-top:10px;border-top:1px solid #CCC}
+.documentation label.first{padding:0;border:none}
+/* DETAILS */
+.details{margin-bottom:12px;border:1px dashed #999;background-color:#EFEFEF}
+.details label{display:inline;margin-right:5px;padding:0;border:none}
+/* DOWNLOAD */
+.download label{display:inline;margin-right:5px}
+/* EXAMPLES */
+#tabs{margin:10px 0}
+/* FEATURES */
+.features{padding-left:20px}
+.features ul{list-style-type:disc}
+/* AUTOCOMPLETE EXTENDED */
+.readonly{background-color:#EEE;border:1px solid #BBB}
+.ui-button-icon-only{padding:8px 0;margin-right:2px}
+.autocompleteextended-buttoncontainer{display:inline-block;vertical-align:bottom}
+.autocompleteextended-father,.autocompleteextended-grp,.autocompleteextended-grpinputs{position:relative;clear:left}

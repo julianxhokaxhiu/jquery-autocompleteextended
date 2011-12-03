@@ -1,0 +1,336 @@
+<html>
+<head>
+	<title>jQueryUI Autocomplete Extended</title>
+	<link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.7.custom.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.7.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery.autocompleteextended-0.2.min.js"></script>
+	<script type="text/javascript">
+		jQuery(function($){
+			var theRow = $('table tr.mainrow').clone();
+			var addnewRow = function(){
+				var theNewRow = theRow.clone();
+				$('table td.add').removeClass('add').addClass('del').append($('<button/>',{'class':'remove'}).text('-'));
+				$('table td.del button').button().click(function(){$(this).parents('tr').remove()});
+				$('table tbody').append(theNewRow);
+				$('table input').autocompleteextended({SearchUri:'search.php',multiple:false});
+				$('table button.addrow').button().click(function(){addnewRow();$(this).remove()});
+			};
+			$('#tabs').tabs();
+			$('#example1').autocompleteextended({SearchUri:'search.php'});
+			$('#example2').autocompleteextended({SearchUri:'search.php',multiple:true});
+			$('#example3').autocompleteextended({SearchUri:'search.php',multiple:true,defaultvalue:['this','is','SPARTA!']});
+			$('table input').autocompleteextended({SearchUri:'search.php',multiple:false});
+			$('table button.addrow').button().click(function(){addnewRow();$(this).remove()});
+		});
+	</script>
+</head>
+<body>
+	<h1>AutoComplete Extended</h1>
+	<h2>A simple plugin for having multiple autocomplete inputs and more</h2>
+	<h3>Credits</h3>
+	<div class="credits">
+		<ul>
+			<li><a href="http://www.julianxhokaxhiu.com/">Julian Xhokaxhiu</a>, developer</li>
+			<li><a href="http://www.aicod.it/" title="Web Agency Parma">Aicod srl</a> for the time they let me to develop this :)</li>
+		</ul>
+	</div>
+	<h3>Features</h3>
+	<div class="features">
+		<ul>
+			<li>It simply works with jQuery and jQueryUI ( + theme), <strong>nothing else is required.</strong></li>
+			<li>It expands the already fully working AutoComplete widget of jQueryUI, but adding more options.</li>
+			<li>It preservers the "name" attr of the input, if you use it in <strong>multiple</strong> mode (useful for example, if you need to post some tags all on one submit).</li>
+			<li>Much more (feel free to discover them by yourself) :)</li>
+		</ul>
+	</div>
+	<h3>Changelog</h3>
+	<div class="changelog">
+		<ul>
+			<li>
+				<label>0.2</label>
+				<ul>
+					<li>completely rewrited in object-oriented method. Now every object could be an instance of this plugin, so you can call methods after you have initialized it.</li>
+				</ul>
+			</li>
+			<li>
+				<label>0.1</label>
+				<ul>
+					<li>initial relase version.</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<h3>Download</h3>
+	<div class="download">
+		<ul>
+			<li><label>Developer version:</label><a href="js/jquery.autocompleteextended-0.2.js">Get it</a></li>
+			<li><label>Packed version:</label><a href="js/jquery.autocompleteextended-0.2.min.js">Get it</a></li>
+		</ul>
+	</div>
+	<h3>Installation</h3>
+	<div class="installation">
+		<ul>
+			<li>See the sources of this page ;)</li>
+		</ul>
+	</div>
+	<h3>Examples</h3>
+	<div id="tabs">
+		<ul>
+			<li><a href="#ex1">Example 1</a></li>
+			<li><a href="#ex2">Example 2</a></li>
+			<li><a href="#ex3">Example 3</a></li>
+			<li><a href="#ex4">Example 4</a></li>
+		</ul>
+		<div id="ex1">
+			<label>Single input example</label>
+			<span>Insert at least two letters (es. "ve","pi",etc.) to see how it works. It's just like the official AutoComplete, but you can select an item from ALL the list (preserving the original autocomplete) and you can add new one.</span>
+			<div class="container"><input id="example1" name="example1"/></div>
+		</div>
+		<div id="ex2">
+			<label>Multiple inputs example</label>
+			<span>Insert at least two letters (es. "ve","pi",etc.) to see how it works. It's just like the official AutoComplete, but you can have multiple values submitted.</span>
+			<div class="container"><input id="example2" name="example2"/></div>
+		</div>
+		<div id="ex3">
+			<label>Multiple inputs example with default values</label>
+			<span>Just like the example before, but this is default setted with the "defaultvalue" property on plugin call.</span>
+			<div class="container"><input id="example3" name="example3"/></div>
+		</div>
+		<div id="ex4">
+			<label>Table example</label>
+			<table class="ui-widget ui-widget-content">
+				<thead>
+					<tr class="ui-widget-header header">
+						<th>Field 1</th>
+						<th>Field 2</th>
+						<th>Field 3</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="mainrow row">
+						<td><input id="field1" name="field1"/></td>
+						<td><input id="field2" name="field2"/></td>
+						<td><input id="field3" name="field3"/></td>
+						<td class="add"><button class="addrow">+</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<h3>Documentation</h3>
+	<div class="documentation">
+		<label class="first">SearchUri</label>
+		<span>This option define where the autocomplete should point to, when remoting getting the items. If it's relative, it points to the root path, but it can also be absolute.</span>
+		<ul class="details">
+			<li><label>Type:</label><span>String</span></li>
+			<li><label>Default:</label><span>'' (Empty String)</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({SearchUri:'search.php'});</span></li>
+		</ul>
+		<label>minLength</label>
+		<span>This option define how many characters must be in the input before the search in the remote source begins.</span>
+		<ul class="details">
+			<li><label>Type:</label><span>Integer</span></li>
+			<li><label>Default:</label><span>2</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({minLength:4});</span></li>
+		</ul>
+		<label>useRegEx</label>
+		<span>This option define if you want to use regex patterns on the text you insert (only on the input, NOT on the new windows and NOT on the list window), for example if you want only to have numbers.</span>
+		<ul class="details">
+			<li><label>Type:</label><span>Boolean</span></li>
+			<li><label>Default:</label><span>false</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({useRegEx:true});</span></li>
+		</ul>
+		<label>RegExPattern</label>
+		<span>This option define the pattern to use with the regex. IT MUST BE USED IN CONJUCTION WITH <strong>useRegEx</strong> TO MAKE IT WORK.</span>
+		<ul class="details">
+			<li><label>Type:</label><span>RegExp Object</span></li>
+			<li><label>Default:</label><span>null</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({RegExPattern:/^([0-9]+)$/});</span></li>
+		</ul>
+		<label>multiple</label>
+		<span>This option define if the input must act as a multiple one. See the examples to make it more clear.</span>
+		<ul class="details">
+			<li><label>Type:</label><span>Boolean</span></li>
+			<li><label>Default:</label><span>false</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({multiple:true});</span></li>
+		</ul>
+		<label>defaultvalue</label>
+		<span>This option define the default value(s) for the input at the initialization time. If you're using it in conjuction with the <strong>multiple</strong> option, you must pass it as an Array.</span>
+		<ul class="details">
+			<li><label>Type:</label><span>String or Array</span></li>
+			<li><label>Default:</label><span>null</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({multiple:false,defaultvalue:'Default value'}); or $('input').autocompleteextended({multiple:true,defaultvalue:['Default','value']});</span></li>
+		</ul>
+		<label>withList</label>
+		<span>This option define if you want the List button next your input (this allows to scroll inside ALL the elements that you're filtering into).</span>
+		<ul class="details">
+			<li><label>Type:</label><span>Boolean</span></li>
+			<li><label>Default:</label><span>true</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({withList:false});</span></li>
+		</ul>
+		<label>withNew</label>
+		<span>This option define if you want the New button next to your input (this allows to insert values that are NOT into the remote list).</span>
+		<ul class="details">
+			<li><label>Type:</label><span>Boolean</span></li>
+			<li><label>Default:</label><span>true</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({withNew:false});</span></li>
+		</ul>
+		<label>callback</label>
+		<span>This option define a function callback that will be executed when ANY window will be closed.</span>
+		<ul class="details">
+			<li><label>Type:</label><span>function</span></li>
+			<li><label>Default:</label><span>null</span></li>
+			<li><label>Example:</label><span>$('input').autocompleteextended({callback:function(){alert('Callback!')});</span></li>
+		</ul>
+		<label>buttons</label>
+		<span>This group define the options regarding the buttons next to the input (like the New, List or Delete button.</span>
+		<ul>
+			<li>
+				<label class="first">useIcons</label>
+				<span>This option define if you want to have icons on the buttons or if you want text (not both of them).</span>
+				<ul class="details">
+					<li><label>Type:</label><span>Boolean</span></li>
+					<li><label>Default:</label><span>true</span></li>
+					<li><label>Example:</label><span>$('input').autocompleteextended({buttons:{useIcons:false}});</span></li>
+				</ul>
+			</li>
+			<li>
+				<label>textNew</label>
+				<span>THis option define the text of the New button.</span>
+				<ul class="details">
+					<li><label>Type:</label><span>String</span></li>
+					<li><label>Default:</label><span>'New'</span></li>
+					<li><label>Example:</label><span>$('input').autocompleteextended({buttons:{textNew:'New item'}});</span></li>
+				</ul>
+			</li>
+			<li>
+				<label>textList</label>
+				<span>This option define the text of the List button.</span>
+				<ul class="details">
+					<li><label>Type:</label><span>String</span></li>
+					<li><label>Default:</label><span>'List'</span></li>
+					<li><label>Example:</label><span>$('input').autocompleteextended({buttons:{textList:'List of items'}});</span></li>
+				</ul>
+			</li>
+			<li>
+				<label class="last">textDelete</label>
+				<span>This option define the text of the Delete button.</span>
+				<ul class="details">
+					<li><label>Type:</label><span>String</span></li>
+					<li><label>Default:</label><span>'Delete'</span></li>
+					<li><label>Example:</label><span>$('input').autocompleteextended({buttons:{textDelete:'Delete item'}});</span></li>
+				</ul>
+			</li>
+		</ul>
+		<label class="last">windows</label>
+		<span>This group define the options regarding certains actions on the relative windows.</span>
+		<ul>
+			<li>
+				<label class="first">add</label>
+				<span>This group define the callback options for the add window.</span>
+				<ul>
+					<li>
+						<label class="first">onOK</label>
+						<span>This option define the callback when OK is pressed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{add:{onOK:function(){alert('OK Callback!')}}}});</span></li>
+						</ul>
+					</li>
+					<li>
+						<label>onCancel</label>
+						<span>This option define the callback when Cancel is pressed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{add:{onCancel:function(){alert('Cancel Callback!')}}}});</span></li>
+						</ul>
+					</li>
+					<li>
+						<label class="last">onClose</label>
+						<span>This option define the callback when the window is closed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{add:{onClose:function(){alert('Cancel Callback!')}}}});</span></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<label>list</label>
+				<span>This group define the callback options for the list window.</span>
+				<ul>
+					<li>
+						<label class="first">onOK</label>
+						<span>This option define the callback when OK is pressed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{list:{onOK:function(){alert('OK Callback!')}}}});</span></li>
+						</ul>
+					</li>
+					<li>
+						<label>onCancel</label>
+						<span>This option define the callback when Cancel is pressed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{list:{onCancel:function(){alert('Cancel Callback!')}}}});</span></li>
+						</ul>
+					</li>
+					<li>
+						<label class="last">onClose</label>
+						<span>This option define the callback when the window is closed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{list:{onClose:function(){alert('Cancel Callback!')}}}});</span></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<label class="last">remove</label>
+				<span>This group define the callback options for the remove window.</span>
+				<ul>
+					<li>
+						<label class="first">onOK</label>
+						<span>This option define the callback when OK is pressed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{remove:{onOK:function(){alert('OK Callback!')}}}});</span></li>
+						</ul>
+					</li>
+					<li>
+						<label>onCancel</label>
+						<span>This option define the callback when Cancel is pressed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{remove:{onCancel:function(){alert('Cancel Callback!')}}}});</span></li>
+						</ul>
+					</li>
+					<li>
+						<label class="last">onClose</label>
+						<span>This option define the callback when the window is closed.</span>
+						<ul class="details">
+							<li><label>Type:</label><span>function</span></li>
+							<li><label>Default:</label><span>null</span></li>
+							<li><label>Example:</label><span>$('input').autocompleteextended({windows:{remove:{onClose:function(){alert('Cancel Callback!')}}}});</span></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
